@@ -127,7 +127,9 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  
+  p user_data.update(update_data)
+  # p user_data.merge!(update_data)
+
 
 end
 
@@ -135,7 +137,7 @@ def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-
+  p data.keys
 end
 
 def q15
@@ -143,7 +145,8 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-
+  puts data1.key?(:age) ? "OK" : "NG"
+  puts data2.key?(:age) ? "OK" : "NG"
 end
 
 def q16
@@ -155,12 +158,27 @@ def q16
   ]
 
   # 以下に回答を記載
-
+  users.each {|user|
+    puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です。"
+  }
 end
 
 class UserQ17
   # 以下に回答を記載
 
+  def initialize(name:, age:, gender:)
+    @name = name
+    @age = age
+    @gender = gender
+  end
+
+  def info
+    puts <<~TEXT
+      名前：#{@name}
+      年齢：#{@age}
+      性別：#{@gender}
+    TEXT
+  end
 end
 
 def q17
@@ -175,6 +193,18 @@ end
 
 class UserQ18
   # 以下に回答を記載
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
+
+  def introduce
+    if @age == 32
+      return "こんにちは，あじーと申します。宜しくお願いいたします。"
+    else
+      return "はいさいまいど〜，ゆたぼんです！！！"
+    end
+  end
 
 end
 
@@ -189,8 +219,9 @@ end
 
 class Item
   # 以下を修正して下さい
+  attr_reader :name
 
-  def initialize(name)
+  def initialize(name:)
     @name = name
   end
 end
@@ -203,11 +234,34 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  attr_accessor :name, :age
 
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+attr_accessor :name, :entry_fee
+
+def initialize(name:, entry_fee:)
+  @name = name
+  @entry_fee = entry_fee
+end
+
+def info_entry_fee(user)
+  if user.age >= 0 && user.age <= 5
+    puts "#{user.name}さんの入場料金は#{@entry_fee[:infant]}円です"
+  elsif  user.age >= 6 && user.age <= 12
+    puts "#{user.name}さんの入場料金は#{@entry_fee[:children]}円です"
+  elsif  user.age >= 13 && user.age <= 64
+    puts "#{user.name}さんの入場料金は#{@entry_fee[:adult]}円です"
+  elsif  user.age >= 65 && user.age <= 120
+    puts "#{user.name}さんの入場料金は#{@entry_fee[:senior]}円です"
+  end
+end
 
 end
 
