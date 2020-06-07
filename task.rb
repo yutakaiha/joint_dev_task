@@ -16,7 +16,7 @@ def q2
 
   # 以下に回答を記載
 
-  array3 = array1 + array2
+  array3 = array1 + array2”
   p array3
   # p array1.concat(array2)
 end
@@ -166,10 +166,10 @@ end
 class UserQ17
   # 以下に回答を記載
 
-  def initialize(name:, age:, gender:)
-    @name = name
-    @age = age
-    @gender = gender
+  def initialize(params)
+    @name = params[:name]
+    @age = params[:age]
+    @gender = params[:gender]
   end
 
   def info
@@ -199,7 +199,7 @@ class UserQ18
   end
 
   def introduce
-    if @age == 32
+    if @age >= 20
       return "こんにちは，あじーと申します。宜しくお願いいたします。"
     else
       return "はいさいまいど〜，ゆたぼんです！！！"
@@ -244,7 +244,7 @@ end
 
 class Zoo
   # 以下に回答を記載
-attr_accessor :name, :entry_fee
+attr_writer :name, :entry_fee
 
 def initialize(name:, entry_fee:)
   @name = name
@@ -252,15 +252,34 @@ def initialize(name:, entry_fee:)
 end
 
 def info_entry_fee(user)
-  if user.age >= 0 && user.age <= 5
-    puts "#{user.name}さんの入場料金は#{@entry_fee[:infant]}円です"
-  elsif  user.age >= 6 && user.age <= 12
-    puts "#{user.name}さんの入場料金は#{@entry_fee[:children]}円です"
-  elsif  user.age >= 13 && user.age <= 64
-    puts "#{user.name}さんの入場料金は#{@entry_fee[:adult]}円です"
-  elsif  user.age >= 65 && user.age <= 120
-    puts "#{user.name}さんの入場料金は#{@entry_fee[:senior]}円です"
+  infant = @entry_fee[:infant]
+  children = @entry_fee[:children]
+  adult = @entry_fee[:adult]
+  senior = @entry_fee[:senior]
+
+  entrance_fee = case user.age
+    
+  when 0..5
+     infant
+  when 6..12
+     children
+  when 13..64
+     adult
+  when 65..120
+     senior
   end
+
+  puts "#{user.name}さんの入場料金は#{entrance_fee}円です"
+
+  # if user.age >= 0 && user.age <= 5
+  #   puts "#{user.name}さんの入場料金は#{@entry_fee[:infant]}円です"
+  # elsif  user.age >= 6 && user.age <= 12
+  #   puts "#{user.name}さんの入場料金は#{@entry_fee[:children]}円です"
+  # elsif  user.age >= 13 && user.age <= 64
+  #   puts "#{user.name}さんの入場料金は#{@entry_fee[:adult]}円です"
+  # elsif  user.age >= 65 && user.age <= 120
+  #   puts "#{user.name}さんの入場料金は#{@entry_fee[:senior]}円です"
+  # end
 end
 
 end
