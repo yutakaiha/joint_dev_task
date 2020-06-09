@@ -166,7 +166,7 @@ end
 class UserQ17
   # 以下に回答を記載
 
-  def initialize(params)
+  def initialize(**params)
     @name = params[:name]
     @age = params[:age]
     @gender = params[:gender]
@@ -200,9 +200,9 @@ class UserQ18
 
   def introduce
     if @age >= 20
-      return "こんにちは，あじーと申します。宜しくお願いいたします。"
+      "こんにちは，あじーと申します。宜しくお願いいたします。"
     else
-      return "はいさいまいど〜，ゆたぼんです！！！"
+      "はいさいまいど〜，ゆたぼんです！！！"
     end
   end
 
@@ -234,7 +234,7 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name, :age
+  attr_reader :name, :age
 
   def initialize(name:, age:)
     @name = name
@@ -244,7 +244,6 @@ end
 
 class Zoo
   # 以下に回答を記載
-attr_writer :name, :entry_fee
 
 def initialize(name:, entry_fee:)
   @name = name
